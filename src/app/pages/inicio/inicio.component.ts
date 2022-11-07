@@ -8,7 +8,5 @@ import { InicioService as Model } from './inicio.service';
 export class InicioComponent implements OnInit {
   constructor(public model: Model) {}
 
-  ngOnInit(): void {
-    this.model.endpoint;
-  }
+  ngOnInit(): void {}
 }

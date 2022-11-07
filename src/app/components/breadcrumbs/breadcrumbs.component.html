@@ -1,0 +1,14 @@
+<div class="d-flex">
+  <ol class="breadcrumb m-0">
+    <li
+      *ngFor="let item of breadcrumbs; trackBy: trackById"
+      class="breadcrumb-item"
+      [class.active]="item.active"
+      style="cursor: pointer"
+    >
+      <!-- (click)="item.route !== '' && location.back()" -->
+      {{ item.title }}
+    </li>
+  </ol>
+  <span class="ms-auto"></span>
+</div>

@@ -1,0 +1,198 @@
+<div class="row align-items-start gap-3 m-0 px-3 pb-5">
+  <!-- form -->
+  <div class="{{ containerClass }}">
+    <form
+      class="bg-light row m-0 gy-4 gx-3 border rounded needs-validation shadow p-3"
+      autocomplete="off"
+    >
+      <div class="col-12 d-flex align-content-center">
+        <h4 class="m-0" *ngIf="formTitle" [innerHTML]="formTitle">
+          {{ formTitle }}
+        </h4>
+        <small class="ms-auto text-danger" *ngIf="hasRequired">
+          (*) Campos requeridos.
+        </small>
+      </div>
+
+      <ngb-alert
+        class="col-12"
+        type="danger"
+        *ngIf="model.apiErrors.length > 0"
+        (closed)="model.apiErrors = []"
+      >
+        <ul class="m-0">
+          <li class="m-0" *ngFor="let item of model.apiErrors">
+            {{ item }}
+          </li>
+        </ul>
+      </ngb-alert>
+
+      <!-- inputs -->
+      <ng-container
+        *ngFor="
+          let attr of model.getFormInputs(readonly);
+          let i = index;
+          trackBy: trackByType
+        "
+        [ngSwitch]="attr?.getType(true)"
+      >
+        <div
+          class="col-12 d-flex align-items-center gap-2 border-bottom border-primary border-1 pb-3"
+          [ngClass]="{ 'pt-4': i > 0 }"
+          *ngSwitchCase="'tag'"
+        >
+          <!-- <i-feather
+            class="text-primary"
+            name="hash"
+            [ngStyle]="{ 'width.rem': 0.875, 'height.rem': 0.875 }"
+          ></i-feather> -->
+          <h6 class="mb-0">
+            {{ attr.placeholder }}
+          </h6>
+        </div>
+
+        <app-input-text
+          *ngSwitchCase="'text'"
+          [data]="attr"
+          [forceReadOnly]="readonly"
+          [class]="attr.container_class ? attr.container_class : 'col-12'"
+        ></app-input-text>
+
+        <app-input-password
+          *ngSwitchCase="'password'"
+          [data]="attr"
+          [forceReadOnly]="readonly"
+          [class]="attr.container_class ? attr.container_class : 'col-12'"
+        ></app-input-password>
+
+        <app-input-datepicker
+          *ngSwitchCase="'date'"
+          [data]="attr"
+          [forceReadOnly]="readonly"
+          [class]="attr.container_class ? attr.container_class : 'col-12'"
+        ></app-input-datepicker>
+
+        <app-input-select
+          *ngSwitchCase="'select'"
+          [data]="attr"
+          [forceReadOnly]="readonly"
+          [class]="attr.container_class ? attr.container_class : 'col-12'"
+        ></app-input-select>
+
+        <app-input-multiple
+          *ngSwitchCase="'multiple'"
+          [data]="attr"
+          [forceReadOnly]="readonly"
+          [class]="attr.container_class ? attr.container_class : 'col-12'"
+        ></app-input-multiple>
+
+        <app-input-textarea
+          *ngSwitchCase="'textarea'"
+          [data]="attr"
+          [forceReadOnly]="readonly"
+          [class]="attr.container_class ? attr.container_class : 'col-12'"
+        ></app-input-textarea>
+
+        <app-input-switch
+          *ngSwitchCase="'switch'"
+          [data]="attr"
+          [forceReadOnly]="readonly"
+          [class]="attr.container_class ? attr.container_class : 'col-12'"
+        ></app-input-switch>
+
+        <!-- <app-input-time
+          *ngSwitchCase="'time'"
+          [data]="attr"
+          [forceReadOnly]="readonly"
+          [class]="attr.container_class ? attr.container_class : 'col-12'"
+        ></app-input-time> -->
+
+        <app-input-date-time
+          *ngSwitchCase="'datetime'"
+          [data]="attr"
+          [forceReadOnly]="readonly"
+          [class]="attr.container_class ? attr.container_class : 'col-12'"
+        ></app-input-date-time>
+
+        <app-input-file
+          *ngSwitchCase="'file'"
+          [data]="attr"
+          [forceReadOnly]="readonly"
+          [class]="attr.container_class ? attr.container_class : 'col-12'"
+        ></app-input-file>
+
+        <!-- <app-input-file-modal
+          *ngSwitchCase="'file-modal'"
+          [data]="attr"
+          [forceReadOnly]="readonly"
+          [class]="attr.container_class ? attr.container_class : 'col-12'"
+        ></app-input-file-modal>
+
+        <app-input-modal
+          *ngSwitchCase="'modal'"
+          [data]="attr"
+          [model]="model"
+          [item]="itemModal"
+          [fields]="fieldsModal"
+          [forceReadOnly]="readonly"
+          [class]="attr.container_class ? attr.container_class : 'col-12'"
+        ></app-input-modal> -->
+
+        <input *ngSwitchCase="'hidden'" type="hidden" [value]="attr.value" />
+      </ng-container>
+
+      <!-- extra component -->
+      <ng-content select="[role=inner]"></ng-content>
+
+      <!-- btn submit -->
+      <div class="col-12 d-flex justify-content-end gap-3">
+        <app-button
+          *ngIf="!readonly"
+          class="btn-light-600 rounded"
+          (click)="goBack()"
+          [text]="'Cancelar'"
+        >
+        </app-button>
+        <app-button
+          *ngIf="!readonly"
+          class="btn-primary text-light rounded"
+          (click)="!model.form.invalid ? save(redirect) : false"
+          [disabled]="model.form.invalid"
+          [type]="'submit'"
+          [text]="model.saveButton.text() || 'Guardar'"
+        >
+        </app-button>
+      </div>
+    </form>
+  </div>
+
+  <!-- <details>
+    <summary>Some details</summary>
+    <details>
+      <summary>Some details</summary>
+      <p>More info about the details.</p>
+    </details>
+  </details> -->
+
+  <ng-content select="[role=aside]"></ng-content>
+  <!-- rules -->
+  <!-- <div class="col-md-6">
+    <div class="boder bg-light p-3 shadow">
+      <h6>Rules</h6>
+      <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolore
+        voluptas dolor sed officiis, repellendus quidem totam corrupti,
+        doloremque doloribus a perspiciatis asperiores accusamus eum odio
+        inventore laudantium fugiat suscipit minus esse maxime reiciendis libero
+        tenetur error explicabo. Cum quia sit dolorum, doloribus ratione commodi
+        quibusdam consectetur cupiditate quis sequi est, distinctio fugiat ab
+        nostrum deleniti inventore possimus perferendis eveniet nulla tempore
+        adipisci sapiente voluptates, ea provident! Quas blanditiis eos
+        asperiores labore qui corrupti aspernatur, itaque, numquam corporis
+        harum mollitia delectus repellendus sapiente rem expedita aliquid iure
+        voluptas placeat error eius distinctio libero temporibus. Maxime fuga
+        eaque illo cumque ab quidem.
+      </p>
+    </div>
+  </div> -->
+</div>

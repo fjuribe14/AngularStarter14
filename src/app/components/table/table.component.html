@@ -1,0 +1,172 @@
+<!-- header -->
+<div class="d-flex gap-3 align-items-center pb-3 p-3">
+  <app-button
+    *ngIf="back"
+    (click)="location.back()"
+    [class]="'btn-dark-300'"
+    [icon]="'feather-chevron-left'"
+    ngbTooltip="Volver"
+  ></app-button>
+
+  <h4 class="m-0" style="width: fit-content">{{ model.name }}</h4>
+  <div class="d-flex flex-fill align-items-center gap-3">
+    <app-button
+      *ngIf="model.canCreate()"
+      [routerLink]="model.createButton.link && model.createButton.link()"
+      [text]="model.createButton.text && model.createButton.text()"
+      [class]="model.createButton.class && model.createButton.class()"
+      [disabled]="model.createButton?.disable && model.createButton?.disable()"
+      [icon]="model?.createButton?.icon && model?.createButton?.icon()"
+      (click)="
+        model.createButton.link
+          ? model.createButton.link()
+          : model.createButton.click && model.createButton.click()
+      "
+    ></app-button>
+    <app-filters [model]="model"></app-filters>
+    <div class="ms-auto"></div>
+    <app-paginator
+      [model]="model"
+      [simplePagination]="simplePagination"
+    ></app-paginator>
+  </div>
+</div>
+
+<!-- table -->
+<div class="px-3">
+  <div
+    *ngIf="!toggleViews && model.items.length !== 0"
+    class="table-responsive"
+  >
+    <table class="table align-middle table-hover">
+      <thead class="table-light">
+        <tr class="bg-dark">
+          <th
+            *ngIf="
+              model._getActionButtons.length > 0 && model.items.length > 0
+            "
+            scope="col"
+            nowrap
+            class="text-center"
+          >
+            {{ model._getActionButtons.length == 1 ? "Acción" : "Acciones" }}
+          </th>
+          <th
+            (click)="
+              attr.sortable && model.items.length > 0
+                ? orderBy(attr.sortable_name)
+                : null
+            "
+            *ngFor="let attr of model._listables; trackBy: trackById"
+            scope="col"
+            style="cursor: pointer"
+            nowrap
+          >
+            <div
+              class="d-flex gap-3 align-items-center justify-content-between"
+            >
+              {{ attr.label }}
+
+              <ng-icon
+                *ngIf="attr.sortable"
+                class="text-secondary"
+                [ngStyle]="{
+                  'width.rem': 0.875,
+                  'height.rem': 0.875,
+                  'marginBottom.rem': 0.75
+                }"
+                [name]="getOrderIcon(attr.name)"
+              ></ng-icon>
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody *ngIf="model.items.length > 0">
+        <!-- [routerLink]="['Detalle/' + item[model.primaryKey]]" -->
+        <tr *ngFor="let item of model.items; trackBy: trackByItem">
+          <td class="text-center" *ngIf="model._getActionButtons.length > 0" nowrap>
+            <div class="px-2 gap-3 flex-nowrap d-flex">
+              <ng-container
+                *ngFor="
+                  let button of model._getActionButtons;
+                  trackBy: trackById
+                "
+              >
+                <!-- && auth.tienePermisoAsignado(model.getPermission(button.name)) -->
+                <app-button
+                  *ngIf="button.can(item)"
+                  [disabled]="button.disable(item)"
+                  [class]="button.class && button.class(item)"
+                  placement="left"
+                  [type]="'table'"
+                  [tooltip]="button.tooltip && button.tooltip(item)"
+                  [routerLink]="
+                    button.link && !button.disable(item)
+                      ? button.link(item)
+                      : []
+                  "
+                  (click)="
+                    button.click && !button.disable(item)
+                      ? button.click(item)
+                      : false
+                  "
+                  [text]="button.text && button.text(item)"
+                  [icon]="button.icon && button.icon(item)"
+                  [html]="button.html && button.html(item)"
+                ></app-button>
+                <span
+                  *ngIf="button.html"
+                  [innerHTML]="button.html(item)"
+                ></span>
+              </ng-container>
+              <!-- <div ngbDropdown display="dynamic" class="d-inline-block">
+                    <app-button
+                      [class]="'btn'"
+                      [icon]="'more-horizontal'"
+                      [type]="'table'"
+                      id="dropdownBasic1"
+                      ngbDropdownToggle
+                    >
+                    </app-button>
+
+                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                      <button ngbDropdownItem>Action - 1</button>
+                      <button ngbDropdownItem>Another Action</button>
+                      <button ngbDropdownItem>Something else is here</button>
+                    </div>
+                  </div> -->
+            </div>
+          </td>
+          <td
+            *ngFor="let attr of model._listables; trackBy: trackById"
+            scope="col"
+            class="position-relative"
+            nowrap
+          >
+            <span
+              [class]="
+                model.getCssClass(attr.name) ? model.getCssClass(attr.name) : 'text-left'
+              "
+              [innerHTML]="model.getter(item, attr.name)"
+              placement="top-left"
+              [ngbTooltip]="model.tooltip(item, attr.name)"
+            >
+              {{ item[attr.name] }}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div
+  *ngIf="model.items.length === 0"
+  class="text-nowrap d-grid w-100"
+  style="height: 50vh"
+>
+  <div class="m-auto px-3 py-1">
+    <img src="assets/images/empty.svg" alt="empty.svg" class="img-fluid" />
+    <p>No se han encontrado registros</p>
+  </div>
+</div>

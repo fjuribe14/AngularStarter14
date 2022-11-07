@@ -3,8 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 /**
  * Components
  */
-import { InicioComponent } from './pages/inicio/inicio.component';
 import { LayoutComponent } from './components/layout.component';
+import { InicioComponent } from './pages/inicio/inicio.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/Inicio' },

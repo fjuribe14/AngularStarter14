@@ -1,0 +1,57 @@
+<div class="d-flex gap-1 w-100">
+  <div class="form-floating w-100">
+    <input
+      class="form-control {{ data.class }} is-invalid"
+      type="text"
+      [class.is-invalid]="
+        data.formControl.invalid &&
+        (data.formControl.dirty || data.formControl.touched)
+      "
+      [placeholder]="data.placeholder"
+      [id]="data.getName(isForm)"
+      [name]="data.getName(isForm)"
+      [minDate]="data.minDate"
+      [maxDate]="data.maxDate"
+      ngbDatepicker
+      #d="ngbDatepicker"
+      [footerTemplate]="footerTemplate"
+      [disabled]="isForm && data.disabled"
+      [readonly]="isForm && (forceReadOnly || data.readonly)"
+      (dateSelect)="data.value = $event"
+      [(ngModel)]="data.value"
+      [defaultValue]="defaultValue"
+      (blur)="data.formControl.markAsTouched({ onlySelf: true })"
+    />
+    <label [for]="data?.name">
+      {{ data.parentLabel }}
+      <small *ngIf="data.required" class="text-danger">*</small>
+    </label>
+    <div
+      [id]="data?.name"
+      *ngFor="
+        let error of data.formControl.errors | keyvalue;
+        trackBy: trackById
+      "
+      [translateParams]="error.value"
+      [translate]="'validations.' + error.key"
+      class="invalid-feedback mt-0"
+    ></div>
+  </div>
+  <app-button
+    *ngIf="!(forceReadOnly || data.readonly)"
+    [icon]="'calendar'"
+    (click)="d.toggle()"
+    [class]="'btn-primary'"
+  ></app-button>
+</div>
+
+<ng-template #footerTemplate>
+  <div class="d-grid p-2">
+    <app-button
+      [text]="'Hoy'"
+      (click)="data.value = today"
+      [fullWidth]="true"
+      [class]="'btn-primary'"
+    ></app-button>
+  </div>
+</ng-template>

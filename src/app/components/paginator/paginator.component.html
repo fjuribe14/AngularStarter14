@@ -1,0 +1,86 @@
+<div
+  class="d-flex gap-3 align-items-center"
+  style="width: max-content"
+  *ngIf="
+    (paginas?.length > 0 && model.pagination?.last_page !== null) ||
+    simplePagination
+  "
+>
+  <div
+    class="d-flex flex-nowrap border border-dark align-items-center justify-content-center px-2 bg-light rounded"
+    style="height: 2rem"
+  >
+    <!-- {{ model.pagination.from }} -->
+    {{ model.pagination.to || "0" }} / {{ model.pagination.total }}
+  </div>
+
+  <div
+    class="btn-group d-flex gap-2"
+    role="group"
+    *ngIf="
+      paginas?.length > 0 &&
+      model.pagination?.last_page > 1 &&
+      !simplePagination
+    "
+  >
+    <app-button
+      [class]="'btn-dark'"
+      (click)="nextPage(1)"
+      [icon]="'faAngleDoubleLeft'"
+      [disabled]="model.pagination.current_page === 1"
+      *ngIf="model.pagination.current_page !== 1"
+    ></app-button>
+    <app-button
+      [class]="'btn-dark'"
+      (click)="nextPage(model.pagination.current_page - 1)"
+      [icon]="'faChevronLeft'"
+      [disabled]="model.pagination.current_page === 1"
+      *ngIf="model.pagination.current_page !== 1"
+    ></app-button>
+    <ng-container *ngFor="let pagina of paginas; trackBy: trackById">
+      <app-button
+        [class]="'btn-dark'"
+        *ngIf="pagina === model.pagination.current_page"
+        [active]="pagina === model.pagination.current_page"
+        [text]="pagina"
+      ></app-button>
+      <app-button
+        [class]="'btn-outline-dark'"
+        *ngIf="pagina != model.pagination.current_page"
+        (click)="nextPage(pagina)"
+        [active]="pagina === model.pagination.current_page"
+        [text]="pagina"
+      ></app-button>
+      <app-button
+        [class]="'btn-dark'"
+        (click)="nextPage(model.pagination.current_page + 1)"
+        [icon]="'faChevronRight'"
+        [active]="pagina === model.pagination.current_page"
+        [disabled]="
+          model.pagination.current_page === model.pagination.last_page
+        "
+        *ngIf="model.pagination.current_page !== model.pagination.last_page"
+      ></app-button>
+      <app-button
+        [class]="'btn-dark'"
+        (click)="nextPage(model.pagination.last_page)"
+        [icon]="'faAngleDoubleRight'"
+        [disabled]="
+          model.pagination.current_page === model.pagination.last_page
+        "
+        *ngIf="model.pagination.current_page !== model.pagination.last_page"
+        [active]="pagina === model.pagination.current_page"
+      ></app-button>
+    </ng-container>
+  </div>
+
+  <select
+    class="form-select border-dark"
+    (change)="model.paginate($event.target['value']).all()"
+    style="width: fit-content"
+  >
+    <option value="20">20</option>
+    <option value="50">50</option>
+    <option value="100">100</option>
+  </select>
+</div>

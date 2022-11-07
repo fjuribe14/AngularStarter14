@@ -1,0 +1,28 @@
+<div class="form-check form-switch">
+  <input
+    class="form-check-input"
+    type="checkbox"
+    role="switch"
+    [id]="data?.name"
+    [class.is-invalid]="
+      data.formControl.invalid &&
+      (data.formControl.dirty || data.formControl.touched)
+    "
+    [attr.readonly]="
+      isForm && (forceReadOnly || data.readonly) ? 'readonly' : null
+    "
+    [disabled]="isForm && data.disabled"
+    [placeholder]="data.placeholder"
+    [(ngModel)]="data.value"
+    [maxlength]="data.max"
+    [(value)]="data.value"
+    (keyup)="data.value = $event.target['value']"
+    (blur)="data.formControl.markAsTouched({ onlySelf: true })"
+    autocomplete="off"
+  />
+
+  <label class="form-check-label" [for]="data?.name">
+    {{ data.parentLabel }}
+    <small *ngIf="data.required" class="text-danger">*</small>
+  </label>
+</div>

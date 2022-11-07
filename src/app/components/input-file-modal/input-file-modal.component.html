@@ -1,0 +1,84 @@
+<div class="d-flex">
+  <button
+    *ngIf="!data.value?.file_documento"
+    class="btn btn btn-primary"
+    (click)="open(content)"
+  >
+    Editar documento
+  </button>
+
+  <div class="card" *ngIf="data.value?.file_documento">
+    <div class="card-body">
+      <div class="d-flex">
+        <h4>
+          {{ data.value?.name }}_{{ data.value?.co_documento_atributo
+          }}{{ data.value?.tx_extension && "." + data.value?.tx_extension }}
+        </h4>
+        <button
+          type="button"
+          class="btn-close ms-auto"
+          aria-label="Close"
+          (click)="delete()"
+        ></button>
+      </div>
+      <p>{{ data.value?.fe_creacion }}</p>
+      <div class="d-grid gap-3">
+        <button class="btn btn btn-info text-light" (click)="download()">
+          Descargar documento
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Editar documento</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss()"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <input
+      class="form-control"
+      type="file"
+      accept="application/pdf"
+      [id]="data.getName(isForm)"
+      [name]="data.getName(isForm)"
+      [class.is-invalid]="
+        data.formControl.invalid &&
+        (data.formControl.dirty || data.formControl.touched)
+      "
+      [attr.readonly]="
+        isForm && (forceReadOnly || data.readonly) ? 'readonly' : null
+      "
+      [disabled]="isForm && data.disabled"
+      [placeholder]="data.placeholder"
+      (change)="onFileSelect($event)"
+    />
+    <div class="text-danger">
+      <small>Tamaño máximo permitido 32MB</small>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-primary"
+      [disabled]="
+        data.formControl.invalid &&
+        (data.formControl.dirty || data.formControl.touched)
+      "
+      (click)="
+        !(
+          data.formControl.invalid &&
+          (data.formControl.dirty || data.formControl.touched)
+        ) && modal.close()
+      "
+    >
+      Guardar
+    </button>
+  </div>
+</ng-template>

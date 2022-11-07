@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ActiveRecordService } from 'src/app/crud-maker/src/model/active_record.service';
-import { Attribute } from 'src/app/crud-maker/src/model/attribute';
+import { ActiveRecordService } from 'src/app/crud-maker/model/active_record.service';
+import { Attribute } from 'src/app/crud-maker/model/attribute';
 
 @Injectable({
   providedIn: 'root',

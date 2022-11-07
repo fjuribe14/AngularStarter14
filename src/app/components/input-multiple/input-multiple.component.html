@@ -1,0 +1,87 @@
+<div class="">
+  <label *ngIf="isForm" class="mb-1 fw-bold" [for]="data.name">
+    {{ data.parentLabel }}
+  </label>
+
+  <ng-select
+    *ngIf="data"
+    [id]="data.getName(isForm)"
+    [name]="data.getName(isForm)"
+    [items]="data.options.model.items"
+    [bindLabel]="data.options.name"
+    [bindValue]="data.options.value"
+    [(ngModel)]="data.value"
+    [multiple]="true"
+    [closeOnSelect]="false"
+    (change)="data?.change && data?.change($event?.target?.value)"
+  >
+  </ng-select>
+  <!-- [disabled]="isForm && (forceReadOnly || data.readonly || data.disabled)" -->
+</div>
+
+<!-- <div class="col">
+  <div class="card h-100">
+    <div class="card-header fw-bold h6">{{ data.parentLabel }}</div>
+    <ul class="list-group list-group-flush">
+      <li
+        class="list-group-item"
+        *ngFor="let item of notSelected; let i = index; trackBy: trackById"
+      >
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            [value]="item.value"
+            [id]="i"
+          />
+          <label class="form-check-label w-100" [for]="i">
+            {{ item.name }}
+          </label>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div
+  class="
+    col-1
+    d-flex
+    flex-column
+    align-items-center
+    justify-content-center
+    gap-3
+  "
+>
+  <app-button [icon]="'arrow-right'" (click)="moveToAll()"></app-button>
+  <app-button [icon]="'arrow-left'" (click)="moveToSelected()"></app-button>
+</div>
+
+<div class="col">
+  <div class="card h-100">
+    <div class="card-header fw-bold h6">Seleccionados</div>
+    <ul class="list-group list-group-flush">
+      <li
+        class="list-group-item"
+        *ngFor="let item of selected; let i = index; trackBy: trackById"
+      >
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            [value]="item.value"
+            [id]="'selected' + i"
+            (change)="setCheckedFromSelected($event)"
+          />
+          <label class="form-check-label w-100" [for]="'selected' + i">
+            {{ item.name }}
+          </label>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<pre>
+  {{ this.arr | json }}
+</pre> -->

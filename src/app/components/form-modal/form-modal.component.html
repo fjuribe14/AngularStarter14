@@ -1,0 +1,144 @@
+<div class="modal-header bg-dark text-light border-0 py-2 px-3">
+  <h4 class="modal-title" id="modal-basic-title">{{ title }}</h4>
+  <app-button
+    [icon]="'feather-x'"
+    (click)="ngbActiveModal.dismiss()"
+  ></app-button>
+</div>
+<div class="modal-body d-grid">
+  <div class="row gy-3">
+    <!-- inputs -->
+    <ng-container
+      *ngFor="
+        let attr of model.getFormInputs(readonly);
+        let i = index;
+        trackBy: trackByType
+      "
+      [ngSwitch]="attr?.getType(true)"
+    >
+      <div
+        class="col-12 d-flex align-items-center gap-2 border-bottom border-primary border-1 pb-3"
+        [ngClass]="{ 'pt-4': i > 0 }"
+        *ngSwitchCase="'tag'"
+      >
+        <!-- <i-feather
+         class="text-primary"
+         name="hash"
+         [ngStyle]="{ 'width.rem': 0.875, 'height.rem': 0.875 }"
+       ></i-feather> -->
+        <h6 class="mb-0">
+          {{ attr.placeholder }}
+        </h6>
+      </div>
+
+      <app-input-text
+        *ngSwitchCase="'text'"
+        [data]="attr"
+        [forceReadOnly]="readonly"
+        [class]="attr.container_class ? attr.container_class : 'col-12'"
+      ></app-input-text>
+
+      <app-input-password
+        *ngSwitchCase="'password'"
+        [data]="attr"
+        [forceReadOnly]="readonly"
+        [class]="attr.container_class ? attr.container_class : 'col-12'"
+      ></app-input-password>
+
+      <app-input-date
+        *ngSwitchCase="'date'"
+        [data]="attr"
+        [forceReadOnly]="readonly"
+        [class]="attr.container_class ? attr.container_class : 'col-12'"
+      ></app-input-date>
+
+      <app-input-select
+        *ngSwitchCase="'select'"
+        [data]="attr"
+        [forceReadOnly]="readonly"
+        [class]="attr.container_class ? attr.container_class : 'col-12'"
+      ></app-input-select>
+
+      <app-input-multiple
+        *ngSwitchCase="'multiple'"
+        [data]="attr"
+        [forceReadOnly]="readonly"
+        [class]="attr.container_class ? attr.container_class : 'col-12'"
+      ></app-input-multiple>
+
+      <app-input-textarea
+        *ngSwitchCase="'textarea'"
+        [data]="attr"
+        [forceReadOnly]="readonly"
+        [class]="attr.container_class ? attr.container_class : 'col-12'"
+      ></app-input-textarea>
+
+      <app-input-switch
+        *ngSwitchCase="'switch'"
+        [data]="attr"
+        [forceReadOnly]="readonly"
+        [class]="attr.container_class ? attr.container_class : 'col-12'"
+      ></app-input-switch>
+
+      <!-- <app-input-time
+       *ngSwitchCase="'time'"
+       [data]="attr"
+       [forceReadOnly]="readonly"
+       [class]="attr.container_class ? attr.container_class : 'col-12'"
+      ></app-input-time> -->
+
+      <app-input-date-time
+        *ngSwitchCase="'datetime'"
+        [data]="attr"
+        [forceReadOnly]="readonly"
+        [class]="attr.container_class ? attr.container_class : 'col-12'"
+      ></app-input-date-time>
+
+      <app-input-file
+        *ngSwitchCase="'file'"
+        [data]="attr"
+        [forceReadOnly]="readonly"
+        [class]="attr.container_class ? attr.container_class : 'col-12'"
+      ></app-input-file>
+
+      <!-- <app-input-file-modal
+       *ngSwitchCase="'file-modal'"
+       [data]="attr"
+       [forceReadOnly]="readonly"
+       [class]="attr.container_class ? attr.container_class : 'col-12'"
+      ></app-input-file-modal>
+      
+      <app-input-modal
+       *ngSwitchCase="'modal'"
+       [data]="attr"
+       [model]="model"
+       [item]="itemModal"
+       [fields]="fieldsModal"
+       [forceReadOnly]="readonly"
+       [class]="attr.container_class ? attr.container_class : 'col-12'"
+      ></app-input-modal> -->
+
+      <input *ngSwitchCase="'hidden'" type="hidden" [value]="attr.value" />
+    </ng-container>
+  </div>
+</div>
+<div class="modal-footer d-flex justify-content-between py-2 px-3">
+  <app-button
+    *ngIf="!readonly"
+    [class]="'btn-sm btn-outline-danger'"
+    [icon]="'feather-x'"
+    [text]="'Cancelar'"
+    (click)="ngbActiveModal.dismiss()"
+  >
+  </app-button>
+  <app-button
+    *ngIf="!readonly"
+    [icon]="'feather-save'"
+    [class]="'btn-sm btn-success'"
+    [type]="'submit'"
+    [text]="model.saveButton.text() || 'Guardar'"
+    [disabled]="model.form.invalid"
+    (click)="!model.form.invalid && save()"
+  >
+  </app-button>
+</div>

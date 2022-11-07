@@ -1,0 +1,37 @@
+<div class="form-group">
+  <label class="fw-semibold" [for]="data.getName(isForm)"
+    >{{ data.parentLabel }}
+    <small *ngIf="data.required" class="text-danger">*</small>
+  </label>
+
+  <select
+    class="form-select"
+    *ngIf="!data.multiple"
+    [id]="data.getName(isForm)"
+    [name]="data.getName(isForm)"
+    [disabled]="isForm && (forceReadOnly || data.readonly || data.disabled)"
+    [value]="data.value"
+    (change)="data.value = $event.target['value']"
+    [class.is-invalid]="
+      data.formControl.invalid &&
+      (data.formControl.dirty || data.formControl.touched)
+    "
+    (blur)="data.formControl.markAsTouched({ onlySelf: true })"
+  >
+    <option
+      *ngFor="let option of data.getOptions(isForm); trackBy: trackById"
+      [value]="option.value"
+      [selected]="option.value === data.value"
+    >
+      {{ option.name }}
+    </option>
+  </select>
+
+  <div
+    [id]="data?.name"
+    *ngFor="let error of data.formControl.errors | keyvalue; trackBy: trackById"
+    [translateParams]="error.value"
+    [translate]="'validations.' + error.key"
+    class="invalid-feedback m-1"
+  ></div>
+</div>

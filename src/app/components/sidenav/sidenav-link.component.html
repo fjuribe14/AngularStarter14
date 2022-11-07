@@ -1,0 +1,65 @@
+<div class="d-grid text-secondary gap-2">
+  <ng-container *ngFor="let item of links">
+    <!-- single -->
+    <div
+      *ngIf="!item.children"
+      class="sidenav-link rounded d-flex text-uppercase align-items-center gap-3 p-2 px-3 text-nowrap fw-semibold"
+      [routerLink]="item.path"
+      routerLinkActive
+      #btn="routerLinkActive"
+      [ngClass]="{ active: btn.isActive }"
+      style="cursor: pointer"
+    >
+      <ng-icon
+        style="margin-bottom: 0.5rem"
+        *ngIf="item.icon"
+        [name]="item.icon"
+      ></ng-icon>
+      {{ item.name }}
+    </div>
+
+    <!-- with childrens -->
+    <div
+      *ngIf="item.children"
+      (click)="toggleCollapse(item.path)"
+      [class.active]="collapse.current === item.path && collapse.show"
+      class="sidenav-link rounded d-flex text-uppercase align-items-center gap-3 p-2 px-3 text-nowrap fw-semibold"
+      style="cursor: pointer"
+    >
+      <span>
+        <ng-icon
+          style="margin-bottom: 0.75rem"
+          *ngIf="item.icon"
+          [name]="item.icon"
+        ></ng-icon>
+      </span>
+      {{ item.name }}
+      <span class="ms-auto">
+        <ng-icon
+          style="margin-bottom: 0.5rem"
+          name="feather-chevron-{{
+            collapse.current === item.path && collapse.show ? 'up' : 'down'
+          }}"
+        ></ng-icon>
+      </span>
+    </div>
+
+    <!-- childrens -->
+    <div
+      class="ps-2 py-0"
+      *ngIf="item.children && collapse.current === item.path && collapse.show"
+    >
+      <div
+        *ngFor="let child of item.children"
+        class="sidenav-link rounded border-dark-400 border-1 border-bottom p-2 ps-3 text-nowrap"
+        [routerLink]="item.path + '/' + child.path"
+        routerLinkActive
+        #btnChild="routerLinkActive"
+        [class.active]="btnChild.isActive"
+        style="cursor: pointer"
+      >
+        {{ child.name }}
+      </div>
+    </div>
+  </ng-container>
+</div>

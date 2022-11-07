@@ -1,0 +1,50 @@
+<label
+  [for]="data.getName(isForm)"
+  class="d-flex align-items-center gap-2"
+  *ngIf="![null, ''].includes(data.parentLabel)"
+>
+  <span class="fw-semibold">{{ data.parentLabel }}</span>
+  <small *ngIf="data.required" class="text-danger">*</small>
+  <div
+    *ngIf="data.info"
+    [popoverTitle]="data?.info?.title"
+    [ngbPopover]="data?.info?.text"
+    triggers="mouseenter:mouseleave"
+    placement="end"
+    container="body"
+    [ngStyle]="{ 'marginBottom.rem': 0.15 }"
+  >
+    <ng-icon [name]="'feather-help-circle'"></ng-icon>
+  </div>
+</label>
+
+<input
+  class="form-control {{ data.class }} is-invalid"
+  type="date"
+  [id]="data.getName(isForm)"
+  [name]="data.getName(isForm)"
+  [class.is-invalid]="
+    data.formControl.invalid &&
+    (data.formControl.dirty || data.formControl.touched)
+  "
+  [attr.readonly]="
+    isForm && (forceReadOnly || data.readonly) ? 'readonly' : null
+  "
+  [disabled]="isForm && data.disabled"
+  [placeholder]="data.placeholder"
+  [(ngModel)]="data.value"
+  [maxlength]="data.max"
+  [(value)]="data.value"
+  (keyup)="data.value = $event.target['value']"
+  (blur)="data.formControl.markAsTouched({ onlySelf: true })"
+  autocomplete="off"
+/>
+<!-- [attr.onlyNumbers]="data.directive === 'onlyNumbers'" -->
+
+<div
+  [id]="data?.name"
+  *ngFor="let error of data.formControl.errors | keyvalue; trackBy: trackById"
+  [translateParams]="error.value"
+  [translate]="'validations.' + error.key"
+  class="invalid-feedback m-1"
+></div>

@@ -1,0 +1,20 @@
+<button
+  [class.active]="active"
+  class="btn {{ class }} {{ icon && 'd-flex align-items-center gap-2' }} "
+  type="button"
+  [disabled]="disabled"
+  [ngbTooltip]="tooltip"
+  [ngStyle]="{
+    height: type === 'table' && 'auto',
+    width: type === 'table' && 'auto',
+    padding: type === 'table' && 0
+  }"
+>
+  <div
+    *ngIf="icon"
+    [ngStyle]="{ 'marginBottom.rem': type !== 'table' && 0.25 }"
+  >
+    <ng-icon [name]="icon"></ng-icon>
+  </div>
+  <span *ngIf="text">{{ text }}</span>
+</button>

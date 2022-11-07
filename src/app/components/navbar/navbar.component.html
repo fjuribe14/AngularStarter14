@@ -1,0 +1,64 @@
+<nav class="navbar navbar-light bg-light sticky-top border-bottom py-0">
+  <div
+    class="container-fluid d-md-flex align-items-center justify-content-start gap-2"
+  >
+    <a
+      class="navbar-brand d-flex align-items-center gap-2 fs-4 fw-semibold"
+      routerLink="/"
+    >
+      <ng-icon name="feather-codesandbox" style="margin-bottom: 1rem"></ng-icon>
+      <span>Core</span>
+    </a>
+
+    <!-- <div class="navbar-nav flex-row gap-3">
+      <a
+        class="nav-link rounded fw- px-3 py-2"
+        routerLink="/Dashboard"
+        routerLinkActive="bg-dark border border-secondary"
+      >
+        <ng-icon class="me-2" name="feather-activity"></ng-icon>
+        Dashboard
+      </a>
+      <a
+        class="nav-link rounded fw- px-3 py-2"
+        routerLink="/Estadisticas"
+        routerLinkActive="bg-dark border border-secondary"
+      >
+        <ng-icon class="me-2" name="feather-bar-chart-2"></ng-icon>
+        Estadísticas
+      </a>
+      <a
+        class="nav-link rounded fw- px-3 py-2"
+        routerLink="/Reportes"
+        routerLinkActive="bg-dark border border-secondary"
+      >
+        <ng-icon class="me-2" name="feather-list"></ng-icon>
+        Reportes
+      </a>
+    </div> -->
+
+    <div class="ms-auto"></div>
+
+    <!-- <h5 class="rounded px-3 py-2 border border-secondary text-muted m-0">
+      {{ currentUser?.name }}
+    </h5> -->
+
+    <small class="text-muted">{{ currentIbp }}</small>
+
+    <app-button
+      [class]="'btn rounded-circle'"
+      [active]="btn.isActive"
+      [icon]="'feather-user'"
+      routerLink="/Perfil"
+      routerLinkActive
+      #btn="routerLinkActive"
+    ></app-button>
+
+    <app-button
+      [class]="'btn rounded-circle'"
+      [icon]="'feather-settings'"
+      (click)="(null)"
+    ></app-button>
+    <!-- [tooltip]="'Salir'" -->
+  </div>
+</nav>

@@ -1,0 +1,33 @@
+<div
+  class="bg-dark min-vh-100 max-vh-100 d-grid vh-100 border-right sticky-top p-3"
+  style="min-width: 12rem"
+>
+  <div [class.sidenav-active]="sidenavShow" class="sidenav">
+    <!-- links -->
+    <app-sidenav-link *ngIf="sidenavShow"></app-sidenav-link>
+  </div>
+
+  <!-- toggler -->
+  <!-- <div
+    class="toggle-sidenav text-light bg-dark-300 rounded d-flex align-items-center justify-content-center"
+    (click)="togglerHandle()"
+    [ngStyle]="{
+      'right.rem': !sidenavShow ? -3 : -1,
+      zIndex: 999999
+    }"
+    placement="right"
+    [ngbTooltip]="sidenavShow ? 'Ocultar' : 'Ver'"
+  >
+    <ng-icon
+      style="margin-bottom: 0.75rem"
+      [name]="sidenavShow ? 'feather-chevron-left' : 'feather-chevron-right'"
+    ></ng-icon>
+  </div> -->
+
+  <div
+    class="mt-auto rounded text-center text-muted px-3 py-2"
+    style="border-width: 1px; border-style: dashed"
+  >
+    <small>Created by BTC</small>
+  </div>
+</div>

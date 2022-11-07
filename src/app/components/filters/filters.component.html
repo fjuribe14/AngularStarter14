@@ -1,0 +1,98 @@
+<app-button
+  (click)="toggleFilters()"
+  [class]="'btn-dark-300'"
+  [text]="'Ver filtros'"
+  [icon]="'feather-filter'"
+></app-button>
+<div
+  class="border-start filters-container bg-light close"
+  [ngStyle]="{ 'top.px': top, 'height.px': height }"
+>
+  <div class="filters-body overflow-auto">
+    <div
+      class="p-2 filters-header d-flex justify-content-between border-bottom"
+    >
+      <h5 class="m-0">Filtros</h5>
+      <button
+        (click)="toggleFilters()"
+        type="button"
+        class="btn-close text-danger"
+        aria-label="Close"
+      ></button>
+    </div>
+
+    <div
+      [class]="formClass"
+      [formGroup]="model.form"
+      class="px-2 py-3 d-grid gap-4"
+    >
+      <ng-container
+        *ngFor="let filter of model.getFilters(); trackBy: trackByFilter"
+        [ngSwitch]="filter.getType(isForm)"
+      >
+        <app-input-text
+          [class]="'col-12'"
+          *ngSwitchCase="'text'"
+          [data]="filter"
+          [isForm]="isForm"
+          [forceValidation]="filter.validateFilter"
+        >
+        </app-input-text>
+
+        <app-input-select
+          [class]="'col-12'"
+          *ngSwitchCase="'select'"
+          [data]="filter"
+          [isForm]="isForm"
+          [forceValidation]="filter.validateFilter"
+        >
+        </app-input-select>
+
+        <!-- <app-input-datetime
+          [class]="'col-12'"
+          *ngSwitchCase="'date'"
+          [data]="filter"
+          [isForm]="isForm"
+          [forceValidation]="filter.validateFilter"
+        >
+        </app-input-datetime> -->
+      </ng-container>
+    </div>
+    <div
+      class="p-2 mt-auto filters-footer bg-light d-flex gap-2 justify-content-between"
+    >
+      <!-- <app-button
+        [disabled]="model.form.invalid"
+        [routerLink]="model.searchButton.link ? model.searchButton.link() : []"
+        [text]="model.searchButton.text ? model.searchButton.text() : 'col-12'"
+        [class]="model.searchButton.class ? model.searchButton.class() : 'col-12'"
+        (click)="
+          model.searchButton.click && !model.form.invalid
+            ? model.searchButton.click(model)
+            : false
+        "
+        type="submit"
+        [tooltip]="'Buscar'"
+      ></app-button> -->
+      <div class="col">
+        <app-button
+          [disabled]="model.form.invalid"
+          (click)="
+            model.searchButton.click && !model.form.invalid ? search() : false
+          "
+          [text]="'Aplicar'"
+          [fullWidth]="true"
+          [class]="'btn-primary btn-block'"
+        ></app-button>
+      </div>
+      <app-button
+        [disabled]="model.form.invalid"
+        (click)="model.clearFilters()"
+        [type]="'reset'"
+        [text]="'Limpiar'"
+        [fullWidth]="true"
+        [class]="'btn-light-600'"
+      ></app-button>
+    </div>
+  </div>
+</div>

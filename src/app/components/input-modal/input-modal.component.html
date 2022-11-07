@@ -1,0 +1,29 @@
+<input type="hidden" [value]="data.value" />
+<div
+  class="d-flex flex-column align-items-start gap-3"
+  *ngIf="!(forceReadOnly || data.readonly)"
+>
+  <app-button
+    *ngIf="!data.value || (data.value && !item)"
+    [icon]="'plus'"
+    [text]="'Asignar un elemento de configuración'"
+    (click)="open()"
+    [class]="'btn-primary'"
+  ></app-button>
+  <app-button
+    *ngIf="data.value && item"
+    [icon]="'x'"
+    [text]="'Eliminar elemento de configuración'"
+    (click)="delete()"
+    [class]="'btn-danger text-light'"
+  ></app-button>
+  <!-- items -->
+  <div class="card col-12" *ngIf="data.value && item">
+    <div class="card-body" *ngIf="fields.length !== 0">
+      <h6>{{ item[fields[0]] }}</h6>
+      <p class="m-0" *ngFor="let field of fields?.slice(1)">
+        {{ item[field] }}
+      </p>
+    </div>
+  </div>
+</div>
