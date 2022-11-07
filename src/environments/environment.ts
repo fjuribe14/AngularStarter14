@@ -3,7 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  APP_NAME: 'Starter 14',
+  APP_SHORT_NAME: 'ST 14',
+  APP_ICONS: 'feather',
+  URL_AUTH_API: 'http://seg.epsinm:8087',
+  URL_BASE_API: 'http://localhost:8000',
 };
 
 /*

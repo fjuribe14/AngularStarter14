@@ -1,0 +1,374 @@
+{
+  "components": {
+    "auth": {
+      "sesion": {
+        "expiracion": "La sesión ha expirado. Se ha cerrado la sesión del usuario correctamente",
+        "desconexion": "Se ha cerrado la sesión del usuario correctamente",
+        "reconexion": "Se ha reiniciado la sesión del usuario satisfactoriamente",
+        "bienvenida": "Se ha iniciado la sesión del usuario satisfactoriamente",
+        "expiracionproxima": "La sesión del usuario está próxima a su vencimiento",
+        "extension": "La sesión del usuario ha sido extendida con éxito"
+      },
+      "permiso": {
+        "denegado": "El usuario no tiene permisos para ejecutar la acción"
+      },
+      "peticion": {
+        "exceso": "Se han realizado demasiadas peticiones al servidor. Intente mas tarde",
+        "servidor": "Se ha producido un error interno en el servidor. Por favor, contacte con el administrador del sitio"
+      }
+    },
+    "layouts": {
+      "header": {
+        "desplegable": {
+          "perfil": "Perfil",
+          "cerrarsesion": "Cerrar sesión"
+        }
+      },
+      "sidebar": {
+        "menu": {
+          "inicio": {
+            "titulo": "Inicio"
+          },
+          "panel_de_control": {
+            "titulo": "Panel de control",
+            "subtitulo": {
+              "cantidad_op": {
+                "titulo": "Cantidad por participante"
+              },
+              "monto_op": {
+                "titulo": "Monto por participante"
+              },
+              "cantidad_op_ont": {
+                "titulo": "Cantidad ONT"
+              },
+              "monto_op_ont": {
+                "titulo": "Monto ONT"
+              },
+              "cant_dist_op_part": {
+                "titulo": "Cantidad Distribucion"
+              },
+              "mont_dist_op_part": {
+                "titulo": "Monto Distribucion"
+              },
+              "op_bajo_valor": {
+                "titulo": "Operaciones bajo valor"
+              },
+              "totales_gen": {
+                "titulo": "Totales Generales"
+              },
+              "totales_neto": {
+                "titulo": "Totales Netos"
+              },
+              "cantidad_de_operaciones": {
+                "titulo": "Cantidad de operaciones"
+              },
+              "monto_de_operaciones": {
+                "titulo": "Monto de operaciones"
+              },
+              "total_de_operaciones": {
+                "titulo": "Totales de operaciones"
+              }
+            }
+          },
+          "monitoreo": {
+            "titulo": "Monitoreo",
+            "subtitulo": {
+              "lipone_final": {
+                "titulo": "Lipone final"
+              },
+              "lipone_provisional": {
+                "titulo": "Lipone provisional"
+              },
+              "mensajes": {
+                "titulo": "Mensajes"
+              },
+              "monitoreo_operaciones": {
+                "titulo": "Operaciones"
+              },
+              "mensajes_de_operaciones_extranet": {
+                "titulo": "Operaciones extranet - IGTF"
+              },
+              "posiciones": {
+                "titulo": "Posiciones"
+              },
+              "liquidaciones_multilaterales": {
+                "titulo": "Liquidaciones multilaterales"
+              },
+              "reporte_de_cobertura": {
+                "titulo": "Reporte de cobertura"
+              }
+            }
+          },
+          "administracion": {
+            "titulo": "Administración",
+            "subtitulo": {
+              "modificacion_de_liquidacion": {
+                "titulo": "Modificación de liquidación"
+              },
+              "modificacion_de_horario": {
+                "titulo": "Modificación de horario"
+              },
+              "cierre_de_sistema": {
+                "titulo": "Cierre de sistema"
+              },
+              "inicio_de_sistema": {
+                "titulo": "Inicio de sistema"
+              }
+            }
+          },
+          "reportes": {
+            "titulo": "Reportes",
+            "subtitulo": {
+              "historico": {
+                "titulo": "Histórico"
+              },
+              "transaccional": {
+                "titulo": "Transaccional"
+              }
+            }
+          },
+          "seguridad": {
+            "titulo": "Seguridad",
+            "subtitulo": {
+              "auditoria": {
+                "titulo": "Auditoría"
+              },
+              "usuarios": {
+                "titulo": "Usuarios"
+              },
+              "roles": {
+                "titulo": "Roles"
+              },
+              "contrasenas": {
+                "titulo": "Contraseñas"
+              },
+              "estatus_de_usuarios": {
+                "titulo": "Estatus de usuarios"
+              }
+            }
+          },
+          "mensajeria": {
+            "titulo": "Mensajería",
+            "subtitulo": {
+              "notificaciones": {
+                "titulo": "Notificaciones"
+              },
+              "sms": {
+                "titulo": "SMS"
+              },
+              "correo": {
+                "titulo": "Correo"
+              },
+              "eventos": {
+                "titulo": "Eventos"
+              },
+              "configuracion": {
+                "titulo": "Configuración"
+              }
+            }
+          },
+          "configuracion": {
+            "titulo": "Configuración",
+            "subtitulo": {
+              "servicios": {
+                "titulo": "Servicios"
+              },
+              "tipos_de_mensajes": {
+                "titulo": "Tipos de mensajes"
+              },
+              "productos": {
+                "titulo": "Productos"
+              },
+              "sub-productos": {
+                "titulo": "Sub-Productos"
+              },
+              "participante": {
+                "titulo": "Participantes"
+              },
+              "motivos_de_rechazos": {
+                "titulo": "Motivos de rechazo"
+              },
+              "parametro_de_sistema": {
+                "titulo": "Parámetros de sistema"
+              },
+              "monedas": {
+                "titulo": "Monedas"
+              },
+              "grupo_de_servicio": {
+                "titulo": "Grupo de servicio"
+              },
+              "cuenta_cliente": {
+                "titulo": "Cuenta cliente"
+              },
+              "calendarios": {
+                "titulo": "Calendarios"
+              },
+              "administracion_de_colas": {
+                "titulo": "Administración de colas"
+              },
+              "medios_de_pago": {
+                "titulo": "Medios de pago"
+              },
+              "impuestos": {
+                "titulo": "Impuestos"
+              },
+              "contacto": {
+                "titulo": "Contacto"
+              },
+              "organismo_ont": {
+                "titulo": "Organismo ONT"
+              }
+            }
+          },
+          "cobranza": {
+            "titulo": "Cobranza",
+            "subtitulo": {
+              "servicio": {
+                "titulo": "Servicio"
+              },
+              "bajo_valor": {
+                "titulo": "Bajo valor"
+              },
+              "configuracion": {
+                "titulo": "Configuración"
+              }
+            }
+          },
+          "soporte": {
+            "titulo": "Soporte",
+            "subtitulo": {
+              "logs": {
+                "titulo": "Logs"
+              },
+              "mensajes_no_enviados": {
+                "titulo": "Mensajes no enviados"
+              },
+              "mensajes_fallidos": {
+                "titulo": "Mensajes fallidos"
+              },
+              "inicio_o_cierre_de_servicio": {
+                "titulo": "Inicio y/o cierre de servicios"
+              },
+              "eventos": {
+                "titulo": "Eventos"
+              },
+              "prueba_de_comunicacion": {
+                "titulo": "Prueba de comunicación"
+              },
+              "configuracion_inicial": {
+                "titulo": "Configuración inicial"
+              },
+              "traza_liquidacion": {
+                "titulo": "Traza liquidación"
+              },
+              "reenvio_mensaje": {
+                "titulo": "Reenvío de mensaje"
+              }
+            }
+          },
+          "procesos_especiales": {
+            "titulo": "Procesos especiales",
+            "subtitulo": {
+              "dias_excepcionales": {
+                "titulo": "Días excepcionales"
+              },
+              "cancelar_liquidacion_lipone": {
+                "titulo": "Cancelar liquidación lipone"
+              },
+              "day_off": {
+                "titulo": "Day off"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "pages": {
+    "auth": {
+      "login": {
+        "formulario": {
+          "usuario": {
+            "placeholder": "Usuario",
+            "validacion": {
+              "required": "El usuario es requerido",
+              "email": "El usuario debe representar un email válido",
+              "length": "El usuario debe contener entre 4 y 254 caracteres"
+            }
+          },
+          "contrasena": {
+            "placeholder": "Contraseña",
+            "validacion": {
+              "required": "La contraseña es requerida",
+              "length": "La contraseña debe contener máximo 254 caracteres"
+            }
+          },
+          "iniciarsesion": "Iniciar sesión",
+          "olvidocontrasena": "¿Olvidaste tu contraseña?"
+        },
+        "eslogan": {
+          "lineauno": "Vive una banca inteligente",
+          "lineados": "¡Justo ahora!"
+        }
+      },
+      "requestpassword": {
+        "formulario": {
+          "email": {
+            "placeholder": "Usuario",
+            "validacion": {
+              "required": "El usuario es requerido",
+              "email": "El usuario debe representar un email válido",
+              "length": "El usuario debe contener entre 4 y 254 caracteres"
+            }
+          },
+          "requestpassword": "Solicitar cambio",
+          "goback": "Volver"
+        }
+      },
+      "resetpassword": {
+        "formulario": {
+          "password": {
+            "placeholder": "Contraseña",
+            "validacion": {
+              "required": "La contraseña es requerida"
+            }
+          },
+          "passwordconfirmation": {
+            "placeholder": "Confirmación de contraseña",
+            "validacion": {
+              "required": "La confirmación de contraseña es requerida",
+              "mustmatch": "Las contraseñas no coinciden"
+            }
+          },
+          "resetpassword": "Restaurar contraseña",
+          "goback": "Volver"
+        }
+      }
+    },
+    "reporte": {
+      "generacion": "Se ha generado el reporte correctamente"
+    }
+  },
+
+  "validations": {
+    "required": "El campo es requerido.",
+    "maxlength": "El campo debe tener un máximo de {{ requiredLength }} caracteres.",
+    "minlength": "El campo debe tener un mínimo de {{ requiredLength }} caracteres.",
+    "email": "El campo debe ser un correo válido.",
+    "equals": "El campo debe ser confirmado.",
+    "pattern": "El campo debe corresponderse con el patrón {{ requiredPattern }}.",
+    "toAddress": "Para separar correos multiples utiliza coma y sin espacios ejm: correo1@mail.com,correo2@mail.com",
+    "numeric": "El campo debe ser numérico.",
+    "between": "El campo debe estar comprendido entre [{{ from }}] y [{{ to }}]",
+    "smallerthan": "El campo debe ser menor a {{ to }}",
+    "smallerorsamethan": "El campo debe ser menor o igual a {{ to }}",
+    "greaterthan": "El campo debe ser mayor a {{ to }}",
+    "notgreaterthan": "El campo no debe ser mayor o igual a {{ to }}",
+    "greaterthandigits": "El monto no puede exceder de {{ maxDigits }} dígitos.",
+    "greaterthandecimal": "El monto no puede exceder de {{ maxDecimal }} decimales.",
+    "ejemplo": "Ejemplo: {{ ejemplo}}.",
+    "notbetween": "El campo no debe estar comprendido entre [{{ from }}] y [{{ to }}]",
+    "validacionhoraliquidacionactivarequerida": "El campo require de al menos una liquidacion activa posterior a esta hora: {{ hora }}",
+    "dayoffcreate": "No se puede generar un Day off cuando la fecha sea mayor o igual al día de hoy"
+  }
+}
