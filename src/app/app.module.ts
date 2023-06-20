@@ -53,6 +53,7 @@ import { ShowQrComponent } from './components/show-qr/show-qr.component';
 import { SidenavLinkComponent } from './components/sidenav/sidenav-link.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { TableComponent } from './components/table/table.component';
+import { LoginComponent } from './pages/login/login.component';
 
 /**
  * Init
@@ -94,6 +95,7 @@ export function initConfig(config: AppConfigService) {
     InputTimepickerComponent,
     InputPasswordComponent,
     InicioComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

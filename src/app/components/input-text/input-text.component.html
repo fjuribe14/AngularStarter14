@@ -1,37 +1,35 @@
-<div class="form-group">
-  <label class="fw-semibold" [for]="data?.name">
-    {{ data.parentLabel }}
-    <small *ngIf="data.required" class="text-danger">*</small>
-  </label>
+<label class="fw-semibold mb-2" [for]="data?.name">
+  {{ data.parentLabel }}
+  <small *ngIf="data.required" class="text-danger">*</small>
+</label>
 
-  <input
-    class="form-control {{ data.class }} is-invalid"
-    type="text"
-    [id]="data.getName(isForm)"
-    [name]="data.getName(isForm)"
-    [class.is-invalid]="
-      data.formControl.invalid &&
-      (data.formControl.dirty || data.formControl.touched)
-    "
-    [attr.readonly]="
-      isForm && (forceReadOnly || data.readonly) ? 'readonly' : null
-    "
-    [disabled]="isForm && data.disabled"
-    [placeholder]="data.placeholder"
-    [(ngModel)]="data.value"
-    [maxlength]="data.max"
-    [(value)]="data.value"
-    (keyup)="data.value = $event.target['value']"
-    (blur)="data.formControl.markAsTouched({ onlySelf: true })"
-    autocomplete="off"
-  />
-  <!-- [attr.onlyNumbers]="data.directive === 'onlyNumbers'" -->
+<input
+  class="form-control {{ data.class }} is-invalid"
+  type="text"
+  [id]="data.getName(isForm)"
+  [name]="data.getName(isForm)"
+  [class.is-invalid]="
+    data.formControl.invalid &&
+    (data.formControl.dirty || data.formControl.touched)
+  "
+  [attr.readonly]="
+    isForm && (forceReadOnly || data.readonly) ? 'readonly' : null
+  "
+  [disabled]="isForm && data.disabled"
+  [placeholder]="data.placeholder"
+  [(ngModel)]="data.value"
+  [maxlength]="data.max"
+  [(value)]="data.value"
+  (keyup)="data.value = $event.target['value']"
+  (blur)="data.formControl.markAsTouched({ onlySelf: true })"
+  autocomplete="off"
+/>
+<!-- [attr.onlyNumbers]="data.directive === 'onlyNumbers'" -->
 
-  <div
-    [id]="data?.name"
-    *ngFor="let error of data.formControl.errors | keyvalue; trackBy: trackById"
-    [translateParams]="error.value"
-    [translate]="'validations.' + error.key"
-    class="invalid-feedback m-1"
-  ></div>
-</div>
+<div
+  [id]="data?.name"
+  *ngFor="let error of data.formControl.errors | keyvalue; trackBy: trackById"
+  [translateParams]="error.value"
+  [translate]="'validations.' + error.key"
+  class="invalid-feedback m-1"
+></div>

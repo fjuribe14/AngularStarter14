@@ -5,9 +5,14 @@ import { RouterModule, Routes } from '@angular/router';
  */
 import { LayoutComponent } from './components/layout.component';
 import { InicioComponent } from './pages/inicio/inicio.component';
+import { LoginComponent } from './pages/login/login.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/Inicio' },
+  {
+    path: 'Login',
+    component: LoginComponent,
+  },
   {
     path: '',
     component: LayoutComponent,
